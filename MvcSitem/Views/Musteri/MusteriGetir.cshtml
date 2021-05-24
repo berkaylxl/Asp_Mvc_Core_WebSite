@@ -1,0 +1,26 @@
+﻿
+@model MvcSitem.Models.Entity.TBLMUSTERI
+@{
+    ViewBag.Title = "MusteriGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using(Html.BeginForm("Guncelle","Musteri",FormMethod.Post))
+{ 
+<div>
+    @Html.LabelFor(m => m.MUSTERI_ID)
+    @Html.TextBoxFor(m => m.MUSTERI_ID, new { @class = "form-control", Readonly = "true" })
+    <br />
+    @Html.LabelFor(m => m.MUSTERİ_AD)
+    @Html.TextBoxFor(m => m.MUSTERİ_AD, new { @class = "form-control", @required = "required" })
+    <br />
+    @Html.LabelFor(m => m.MUSTERI_SOYAD)
+    @Html.TextBoxFor(m => m.MUSTERI_SOYAD, new { @class = "form-control",@required = "required" })
+</div><br />
+<div>
+    <button class="btn btn-warning" style="float:right">
+       Müşteri Güncelle
+    </button>
+</div>
+}
+

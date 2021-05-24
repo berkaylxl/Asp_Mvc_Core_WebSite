@@ -1,0 +1,45 @@
+﻿@using MvcSitem.Models.Entity;
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<TBLURUNLER>
+    
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_MainLayout.cshtml";
+    }
+
+    <table class="table table-bordered">
+        <tr class="bg-danger">
+            <th>ÜRÜN ID</th>
+            <th>ÜRÜN ADI</th>
+            <th>KATEGORİSİ</th>
+            <th>FİYATI</th>
+            <th>STOK</th>
+            <th>MARKASI</th>
+            <th style="color:brown">AYARLAR</th>
+        </tr>
+        <tbody>
+            @foreach (var urun in Model)
+            {
+                <tr>
+                    <td>@urun.URUN_ID</td>
+                    <td>@urun.URUN_AD</td>
+                    <td>@urun.TBLKATEGORİLER.KATEGORİ_AD</td>
+                    <td>@urun.FIYAT</td>
+                    <td>@urun.STOK</td>
+                    <td>@urun.MARKA</td>
+                    <td>
+                        @Html.ActionLink("Sil", "Sil", new { id =urun.URUN_ID }, new { @class = "btn btn-danger", onclick = "return confirm('Silme işlemini onaylıyor musunuz?')" })
+                        <a href="/Urun/urungetir/@urun.URUN_ID" class="btn btn-info">Güncelle</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div style="display:flex;justify-content:center">
+        @Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+    </div>
+    <a href="/Urun/yeniurun/" class="btn btn-success" style="float:right">Ürün Ekle</a>
+
+
+

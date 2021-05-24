@@ -1,0 +1,75 @@
+﻿@model MvcSitem.Models.Entity.TBLSATISLAR
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr class="bg-danger">
+        <th>SATIŞ ID</th>
+        <th>ÜRÜN</th>
+        <th>MÜŞTERİ</th>
+        <th>ADET</th>
+        <th>FİYAT</th>
+        <th style="color:brown">AYARLAR</th>
+    </tr>
+    <tbody>
+        @foreach (var satıs in ViewBag.tablo)
+        {
+        <tr>
+            <th>@satıs.SATIS_ID</th>
+            <th>@satıs.URUN</th>
+            <th>@satıs.MUSTERI</th>
+            <th>@satıs.ADET</th>
+            <th>@satıs.FIYAT</th>
+        </tr>
+
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<button type="button" class="btn btn-primary"data-toggle="modal"data-target="#Modal1">
+    Satış İşlemi
+</button>
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title">Satış Ekranı</h3>
+            </div>
+            <form method="post" action="/Satıs/Yenisatis">
+                <div class="modal-body">
+                    <label>Ürün Adı:</label>
+                    @Html.TextBoxFor(m => m.URUN, new { @class = "form-control", @required = "required" })<br />
+                    <label>Müşteri Ad-Soyad:</label>
+                    @Html.TextBoxFor(m => m.MUSTERI, new { @class = "form-control",@required = "required" })<br />
+                    <label>Adet:</label>
+                    @Html.TextBoxFor(m => m.ADET, new { @class = "form-control" ,@required = "required" })<br />
+                    <label>Fiyat:</label>
+                    @Html.TextBoxFor(m => m.FIYAT, new { @class = "form-control",@required  = "required" })<br />
+                    <br />
+                    <button class="btn btn-warning">Satış Yap</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,41 @@
+﻿@using MvcSitem.Models.Entity
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<TBLMUSTERI>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr class="bg-danger">
+        <th>MÜŞTERİ ID</th>
+        <th>MÜŞTERİ ADI</th>
+        <th>MÜŞTERİ SOYADI</th>
+        <th style="color:brown">AYARLAR</th>
+    </tr>
+    <tbody>
+        @foreach (var must in Model)
+        {
+        <tr>
+            <th>@must.MUSTERI_ID</th>
+            <td>@must.MUSTERİ_AD</td>
+            <td>@must.MUSTERI_SOYAD</td>
+            <td>
+                @Html.ActionLink("Sil", "Sil", new { id = must.MUSTERI_ID }, new { @class = "btn btn-danger", onclick = "return confirm('Silme işlemini onaylıyor musunuz?')" })
+                <a href="/Musteri/MusteriGetir/@must.MUSTERI_ID" class="btn btn-info">Güncelle</a>
+            </td>
+        </tr>
+
+        }
+    </tbody>
+</table>
+<div style="display:flex;justify-content:center">
+    @Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+</div>
+<a href="/Musteri/yenimusteri/"class="btn btn-success" style="float:right">Müsteri Ekle</a>
+
+
+
+
+

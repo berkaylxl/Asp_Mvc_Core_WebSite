@@ -1,0 +1,38 @@
+﻿@using MvcSitem.Models.Entity
+@using PagedList
+@using PagedList.Mvc
+
+@model  PagedList.IPagedList<TBLKATEGORİLER>
+@{
+    ViewBag.Title = "Kategorindex";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr class="bg-danger">
+        <th>KATEGORİ ID</th>
+        <th>KATEGORİ ADI</th>
+        <th style="color:brown">AYARLAR</th>
+        
+    </tr>
+    <tbody>
+        @foreach(var ktgr in Model)
+        {
+        <tr>
+            <th>@ktgr.KATEGORI_ID</th>
+            <td>@ktgr.KATEGORİ_AD</td>
+            <td>
+              
+                @Html.ActionLink("Sil", "Sil", new { id=ktgr.KATEGORI_ID},new {@class="btn btn-danger",onclick="return confirm('Silme işlemini onaylıyor musunuz?')" })
+                <a href="/Kategori/KategoriGetir/@ktgr.KATEGORI_ID" class="btn btn-info">Güncelle</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<div style="display:flex;justify-content:center">
+    @Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+</div>
+<a href="/Kategori/yenikategori/" class="btn btn-success"style="float:right">Kategori Ekle</a>
+<br /><br /><br />
+

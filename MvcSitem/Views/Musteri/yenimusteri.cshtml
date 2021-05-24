@@ -1,0 +1,21 @@
+﻿@model MvcSitem.Models.Entity.TBLMUSTERI
+@{
+    ViewBag.Title = "yenimusteri";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<form method="post" class="form-group">
+    <div>
+        <label>MÜŞTERİ ADI:</label>
+       @Html.TextBoxFor(m => m.MUSTERİ_AD, new{@class="form-control"})
+       @Html.ValidationMessageFor(m=>m.MUSTERİ_AD,"",new {@style="color:red"})
+    </div>
+    <div>
+        <label>MÜŞTERİ SOYADI:</label>
+        @Html.TextBoxFor(m => m.MUSTERI_SOYAD, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.MUSTERI_SOYAD, "", new { @style = "color:red" })
+    </div>
+    <div>
+        <button class="btn btn-info" style="float:right;margin-top:5px"> Müşteri Ekle</button>
+    </div>
+
+</form>

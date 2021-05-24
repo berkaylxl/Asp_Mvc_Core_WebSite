@@ -1,0 +1,17 @@
+﻿@model MvcSitem.Models.Entity.TBLKATEGORİLER
+@{
+    ViewBag.Title = "yenikategori";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<form class="form-group" method="post">
+
+    <div>
+        <label>KAtegori Adı:</label>
+        @Html.TextBoxFor(m=>m.KATEGORİ_AD,new {@class="form-control" })
+        @Html.ValidationMessageFor(m => m.KATEGORİ_AD,"", new { @style="color:red;" })
+    </div>
+    <div>
+        <button class="btn btn-info" style="float:right; margin-top:5px">Kategori Ekle</button>
+    </div>
+
+</form>
